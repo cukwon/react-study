@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Counter extends Component {
     //Instant init
     // state = {
-    //     number: 0,
+    //     numbers: 0,
     //     offset: 1
     // }
 
@@ -12,7 +12,7 @@ class Counter extends Component {
         super(props);
         console.log("Create");
         this.state = {
-            number: [0],
+            numbers: [0],
             offset: 10,
             index:0
         };
@@ -43,23 +43,23 @@ class Counter extends Component {
 
     // index와 offset이 변해야 re-render
     shouldComponentUpdate(prevProps,prevState) {
-        console.log(prevState == this.state);
+        //console.log(prevState == this.state);
         if(prevState.index === this.state.index && prevState.offset === this.state.offset) {
             return false
         }
         return true
     }
 
-    // number 배열에 index의 값에 offset만큼 더한후 추가
+    // numbers 배열에 index의 값에 offset만큼 더한후 추가
     handleAddNumber = (offset) => {
-        const { number, index } = this.state;
+        const { numbers, index } = this.state;
+        const nums = numbers.slice(0, index + 1);
+        nums.push(nums[index] + offset);
         this.setState({
-            // number: ( index === number.length-1 ? number : number.slice(0,index+1)).concat(number[index] + offset),
-            index: (index === number.length-1 ? number : number.slice(0,index+1)).push(number[index] + offset) - 1
-        }, () => {
-            console.log(this.state.index, this.state.number)
-        });
-    }
+            numbers: nums,
+            index: index + 1,
+        })
+    };
 
     // 이전 계산값 불러오기 ( index 조정 )
     handleDecreaseIndex = () => {
@@ -69,17 +69,17 @@ class Counter extends Component {
                 index: index - 1
             });
         }
-    }
+    };
 
     // 이후 계산값 불러오기 ( index 조정 )
     handleIncreaseIndex = () => {
-        const { number, index } = this.state
-        if(index < number.length - 1) {
+        const { numbers, index } = this.state
+        if(index < numbers.length - 1) {
             this.setState({
                 index: index + 1
             });
         }
-    }
+    };
 
     // offset값 바꾸기
     changeOffset = (evt) => {
@@ -98,19 +98,23 @@ class Counter extends Component {
 
     // render ( setState 이후 실행 )
     render() {
-        const { index, number } = this.state;
-        console.log('render',index,number[index],number);
-        // const Equation = "Equation : 0";
-        // for(int i; i < number)
+        const { index, numbers } = this.state;
+        console.log('render',numbers.length, index,numbers[index],numbers);
+        let Equation = "Equation : 0";
+        for(let i = 1; i <= index; i++) {
+            const Difference = numbers[i] - numbers[i-1];
+            Equation += ( Difference >= 0 ? " + " : " - ") + (Math.abs(Difference));
+        }
+        Equation += " = ";
         return(
             <div>
                 <h1>카운터</h1>
                 <div>
-                    <p>{Equation}</p>
+                <p>{Equation}</p>
                 </div>
                 <div>
                     <button onClick={this.handleDecreaseIndex}>⬅</button>
-                    &nbsp;값 : {number[index]}&nbsp;
+                    &nbsp;값 : {numbers[index]}&nbsp;
                     <button onClick={this.handleIncreaseIndex}>➡︎</button>
                 </div>
                 <div>
