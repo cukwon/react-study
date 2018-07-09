@@ -30,71 +30,50 @@ class Counter extends Component {
         console.log('UnMount');
     }
 
-    //function
-    handleIcrease = () => {
+    handlePutNumber = (offset) => {
         const { number, index } = this.state
-        // console.log(index,number)
-        this.setState({
-            number: (number.length-1 === index ? number : number.slice(0,index+1)).concat(number[index] + 1),
-            index: index + 1
-        });
-        console.log('funtion',index,number[index],number);
-    };
-
-    handleDecrease = () => {
-        const { number, index } = this.state
-        this.setState({
-            number: (number.length-1 === index ? number : number.slice(0,index+1)).concat(number[index] - 1),
-            index: index + 1
-        });
-    };
-
-    handleIcreaseT = () => {
-        const { number, index } = this.state
-        this.setState({
-            number: (number.length-1 === index ? number : number.slice(0,index+1)).concat(number[index] + 10),
-            index: index + 1
-        });
-    };
-
-    handleDecreaseT = () => {
-        const { number, index } = this.state
-        this.setState({
-            number: (number.length-1 === index ? number : number.slice(0,index+1)).concat(number[index] - 10),
-            index: index + 1
-        });
-    };
-
-    handleIcreaseH = () => {
-        const { number, index } = this.state
-        this.setState({
-            number: (number.length-1 === index ? number : number.slice(0,index+1)).concat(number[index] + 100),
-            index: index + 1
-        });
-    };
-
-    handleDecreaseH = () => {
-        const { number, index } = this.state
-       this.setState({
-            number: (number.length-1 === index ? number : number.slice(0,index+1)).concat(number[index] - 100),
-            index: index + 1
-        });
-    };
-
-    handleIcreaseC = () => {
-        const { number, offset, index } = this.state
         this.setState({
             number: (number.length-1 === index ? number : number.slice(0,index+1)).concat(number[index] + offset),
             index: index + 1
         });
+    }
+
+
+    //function
+    handleIcrease = () => {
+        const { number, index } = this.state
+        this.handlePutNumber(1)
+        console.log('funtion',index,number[index],number);
+    };
+
+    handleDecrease = () => {
+        this.handlePutNumber(-1)
+    };
+
+    handleIcreaseT = () => {
+        this.handlePutNumber(10)
+    };
+
+    handleDecreaseT = () => {
+        this.handlePutNumber(-10)
+    };
+
+    handleIcreaseH = () => {
+        this.handlePutNumber(100)
+    };
+
+    handleDecreaseH = () => {
+        this.handlePutNumber(-100)
+    };
+
+    handleIcreaseC = () => {
+        const { offset } = this.state
+        this.handlePutNumber(offset)
     };
 
     handleDecreaseC = () => {
-        const { number,offset, index } = this.state
-       this.setState({
-            number: (number.length-1 === index ? number : number.slice(0,index+1)).concat(number[index] - offset),
-            index: index + 1
-        });
+        const { offset } = this.state
+        this.handlePutNumber(-(offset))
     };
 
     handleDecreIndex = () => {
