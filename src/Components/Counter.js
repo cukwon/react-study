@@ -26,9 +26,10 @@ class Counter extends Component {
         this.Decrease10 = this.handleAddNumber.bind(this, -10);
         this.Decrease1 = this.handleAddNumber.bind(this, -1);
         // 곱셈 함수
-        this.multiplication2 = this.hanadleMultiNumber.bind(this, 2);
+        this.Multiplication2 = this.hanadleMultiNumber.bind(this, 2);
         // 나눗셈함수
-        this.devision2 = this.hanadleDevisNumber.bind(this, 2);
+        this.Devision2 = this.hanadleDevisNumber.bind(this, 2);
+
         // 바인딩 불가 함수 (Q)
         // this.IncreaseOffset = this.handleAddNumber.bind(this, this.state.offset);
         // this.DecreaseOffset = this.handleAddNumber.bind(this, -(this.state.offset));
@@ -57,39 +58,41 @@ class Counter extends Component {
         return false;
     }
 
-    // logs 배열에 index의 값에 offset만큼 더한후 추가
+    // 덧셈, 뺄셈을 처리 ( value을 바꾸고 log를 기록 )
     handleAddNumber = (offset) => {
         const { value, logs, index } = this.state;
-        const newNumber = value + offset;
-        const newNumbers = logs.slice(0, index + 1);
-        newNumbers.push((offset >= 0 ? "+ "+offset : "- "+Math.abs(offset)));
+        const newValue = value + offset; // value 변경
+        const newLogs = logs.slice(0, index + 1); // 현재 index 이후값 제거
+        newLogs.push((offset >= 0 ? "+ "+offset : "- "+Math.abs(offset))); // log 추가 ( 덧셈, 뺄셈 확인 )
         this.setState({
-            value: newNumber,
-            logs: newNumbers,
+            value: newValue,
+            logs: newLogs,
             index: index + 1
         })
     };
 
+    // 곱셈을 처리 ( value을 바꾸고 log를 기록 )
     hanadleMultiNumber = (offset) =>{
         const { value, logs, index } = this.state;
-        const newNumber = value * offset;
-        const newNumbers = logs.slice(0, index + 1);
-        newNumbers.push("x "+offset);
+        const newValue = value * offset; // value 변경
+        const newLogs = logs.slice(0, index + 1);// 현재 index 이후값 제거
+        newLogs.push("x "+offset); // log 추가
         this.setState({
-            value: newNumber,
-            logs: newNumbers,
+            value: newValue,
+            logs: newLogs,
             index: index + 1
         })
     };
 
+    // 나눗셈을 처리 ( value을 바꾸고 log를 기록 )
     hanadleDevisNumber = (offset) =>{
         const { value, logs, index } = this.state;
-        const newNumber = value / offset;
-        const newNumbers = logs.slice(0, index + 1);
-        newNumbers.push("÷ "+offset);
+        const newValue = value / offset; // value 변경
+        const newLogs = logs.slice(0, index + 1); // 현재 index 이후값 제거
+        newLogs.push("÷ "+offset); // log 추가
         this.setState({
-            value: newNumber,
-            logs: newNumbers,
+            value: newValue,
+            logs: newLogs,
             index: index + 1
         })
     };
@@ -99,9 +102,9 @@ class Counter extends Component {
         const { logs } = this.state;
         let sum = 0;
         for (let i = 0; i <= index; i++) {
-                const spliteLog = logs[i].split(" "); // 로그를 가져옴
-                const op = spliteLog[0], value = spliteLog[1]; // 로그를 연산자와 피연산자로 분리
-                switch (op) {
+                const splitedLog = logs[i].split(" "); // 로그를 가져와 공백을 기준으로 분리
+                const op = splitedLog[0], value = splitedLog[1]; // 로그를 연산자와 피연산자로 분리
+                switch (op) {                                 // 연산자별 처리
                     case "+" :
                         sum += parseInt(value);
                         break;
@@ -115,7 +118,7 @@ class Counter extends Component {
                         sum /= parseInt(value);
                         break;
                     default:
-                        console.log("Error for op"); // 잘못된 연산자들
+                        console.log("Error for op"); // 잘못된 연산자
                         break;
                 }
             }
@@ -126,25 +129,21 @@ class Counter extends Component {
     handleDecreaseIndex = () => {
         const { index } = this.state;
         const newIndex = index - 1;
-        let sum = 0;
         if(newIndex >= -1) {
-            sum = this.handleRecoveryNumber(newIndex);
             this.setState({
-                value: sum,
+                value:  this.handleRecoveryNumber(newIndex), // 결과값 재연산 ( 로그 기반 )
                 index: newIndex
             });
         }
     };
 
-    // 이후 계산값 불러오기 ( index 조정 )
+    // 다음 계산값 불러오기 ( index 조정 )
     handleIncreaseIndex = () => {
-         const { logs, index } = this.state;
+        const { logs, index } = this.state;
         const newIndex = index + 1;
-        let sum = 0;
         if(newIndex < logs.length) {
-            sum = this.handleRecoveryNumber(newIndex);
             this.setState({
-                value: sum,
+                value: this.handleRecoveryNumber(newIndex), // 결과값 재연산 ( 로그 기반 )
                 index: newIndex
             });
         }
@@ -169,6 +168,7 @@ class Counter extends Component {
     render() {
         const { index, value ,logs } = this.state;
         console.log('render',logs.length, index,logs[index],logs);
+        // 계산식 생성
         let Equation = "Equation : 0";
         for(let i = 0; i <= index; i++) {
             Equation += logs[i] + " ";
@@ -177,24 +177,28 @@ class Counter extends Component {
         return(
             <div>
                 <h1>카운터</h1>
+                {/* 계산 로그 */}
                 <div>
                 <p>{Equation}</p>
                 </div>
+                {/* 결과 값과 이전, 다음버튼 */}
                 <div>
                     <button onClick={this.handleDecreaseIndex}>⬅</button>
                     &nbsp;값 : {value}&nbsp;
                     <button onClick={this.handleIncreaseIndex}>➡︎</button>
                 </div>
+                {/* 자주쓰는 연산 */}
                 <div>
-                    <button onClick={this.devision2}>÷2</button>
+                    <button onClick={this.Devision2}>÷2</button>
                     <button onClick={this.Decrease100}>-100</button>
                     <button onClick={this.Decrease10}>-10</button>
                     <button onClick={this.Decrease1}>-1</button>
                     <button onClick={this.Increase1}>+1</button>
                     <button onClick={this.Increase10}>+10</button>
                     <button onClick={this.Increase100}>+100</button>
-                    <button onClick={this.multiplication2}>x2</button>
+                    <button onClick={this.Multiplication2}>x2</button>
                 </div>
+                {/* 커스텀 연산 */}
                 <div>
                     <br/>
                     연산값 :
