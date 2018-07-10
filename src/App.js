@@ -28,6 +28,7 @@ class App extends Component {
                     <MyName name="리엑트"/>
                 </div>
                 <br/><br/>
+                {/* 트리뷰 */}
                 <div style={style}>
                     <TreeView/>
                 </div>

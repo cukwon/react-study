@@ -25,7 +25,7 @@ class Node extends Component {
         let Childrens =[];
         if(this.state.isExpand) {
             console.log(typeof(TreeData.Children), typeof([]))
-            if (typeof(TreeData.children) == typeof([])) {
+            if (typeof(TreeData.children) === typeof([])) {
                 Childrens = TreeData.children.map(children => (<Children TreeData={children}/>));
                 console.log("if", TreeData.children)
             }
