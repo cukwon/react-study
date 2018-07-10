@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import MyName from './Components/Myname';
 import Counter from './Components/Counter';
-import PhoneBook from './Components/PhoneBook/PhoneBook'
+import PhoneBook from './Components/PhoneBook/PhoneBook';
+import TreeView from './Components/TreeView/TreeView';
 
 class App extends Component {
 
@@ -33,6 +34,10 @@ class App extends Component {
                 <br/><br/>
                 <div style={style}>
                     <PhoneBook/>
+                </div>
+                <br/><br/>
+                <div style={style}>
+                    <TreeView/>
                 </div>
             </div>
         );
