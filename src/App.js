@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MyName from './Components/Myname';
 import Counter from './Components/Counter';
+import Counter2 from './Components/Counter2';
 import PhoneBook from './Components/PhoneBook/PhoneBook'
 
 class App extends Component {
@@ -30,6 +31,11 @@ class App extends Component {
                 <div style={style}>
                     <Counter/>
                 </div>
+                <br/><br/>
+                 <div style={style}>
+                    <Counter2/>
+                </div>
+
                 <br/><br/>
                 <div style={style}>
                     <PhoneBook/>

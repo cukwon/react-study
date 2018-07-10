@@ -167,7 +167,9 @@ class Counter extends Component {
     // render ( setState 이후 실행 )
     render() {
         const { index, value ,logs } = this.state;
-        console.log('render',logs.length, index,logs[index],logs);
+        // console.log('render',logs.length, index,logs[index],logs);
+        console.log(this.state);
+
         // 계산식 생성
         let Equation = "Equation : 0";
         for(let i = 0; i <= index; i++) {
@@ -212,3 +214,13 @@ class Counter extends Component {
 }
 
 export default Counter;
+
+
+
+/**
+ * 1. 예외처리 하기 -> 나눗셈 연산 추가로 인한 버그발생 (0 / 으로 나누기)
+ * 2. changeOffset 함수에서 Number함수를 다시 호출하는 이유는?
+ * 3. 함수에서는 * 주석 사용하기
+ * 4. logs 자료구조 단점 -> 매번 split 한다.
+ * 5. render 안의 Equation을 구하는 부분도 함수로 빼는게 좋을꺼 같다.
+ */
