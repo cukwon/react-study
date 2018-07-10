@@ -8,7 +8,7 @@ class TreeView extends Component {
         return (
             <div>
                 <h1>TreeView</h1>
-                <Root data={Data}/>
+                <Root TreeData={Data}/>
             </div>
         )
     }

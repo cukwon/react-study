@@ -4,10 +4,11 @@ import Node from './Node'
 class Children extends Component {
 
     render() {
+        const { TreeData } = this.props;
+        console.log(TreeData)
         return (
             <div>
-                <p>Children</p>
-                {/*<Node/>*/}
+                <Node TreeData={TreeData}/>
             </div>
         )
     }

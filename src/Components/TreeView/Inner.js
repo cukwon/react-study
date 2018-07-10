@@ -4,9 +4,7 @@ class Inner extends Component {
     
     render() {
         return (
-            <div>
-                <p>Inner</p>
-            </div>
+            <span>{this.props.name}</span>
         )
     }
 }

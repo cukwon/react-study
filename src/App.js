@@ -29,14 +29,6 @@ class App extends Component {
                 </div>
                 <br/><br/>
                 <div style={style}>
-                    <Counter/>
-                </div>
-                <br/><br/>
-                <div style={style}>
-                    <PhoneBook/>
-                </div>
-                <br/><br/>
-                <div style={style}>
                     <TreeView/>
                 </div>
             </div>
