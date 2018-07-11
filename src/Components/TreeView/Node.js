@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Inner from './Inner';
 import Children from './Children';
+import Style from './Style';
 
 class Node extends Component {
     state = {
@@ -19,9 +20,7 @@ class Node extends Component {
         });
     };
 
-    render() {
-        const { TreeData } = this.props;
-        console.log(TreeData);
+    handleChildren = (TreeData) => {
         let Childrens =[];
         if(this.state.isExpand) {
             console.log(typeof(TreeData.Children), typeof([]))
@@ -30,11 +29,16 @@ class Node extends Component {
                 console.log("if", TreeData.children)
             }
         }
+        return Childrens;
+    }
+
+    render() {
+        const { TreeData } = this.props;
+        console.log(TreeData);
         return (
-            <div>
-                <span><button onClick={this.handleToggleExpand}>➤</button></span>
-                <Inner name={TreeData.name}/>
-                {Childrens}
+            <div className='Node' style={Style.children}>
+                <Inner name={TreeData.name} toggleExpand={this.handleToggleExpand}/>
+                {this.handleChildren(TreeData)}
             </div>
         )
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Root from './Root';
+import Tree from './Tree';
 import Data from './ExampleData';
 
 class TreeView extends Component {
@@ -8,7 +8,7 @@ class TreeView extends Component {
         return (
             <div>
                 <h1>TreeView</h1>
-                <Root TreeData={Data}/>
+                <Tree TreeData={Data}/>
             </div>
         )
     }

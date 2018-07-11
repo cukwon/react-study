@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Node from './Node'
+import Node from './Node';
+import Style from './Style';
 
 class Children extends Component {
 
@@ -7,7 +8,7 @@ class Children extends Component {
         const { TreeData } = this.props;
         console.log(TreeData)
         return (
-            <div>
+            <div className='Childrens'>
                 <Node TreeData={TreeData}/>
             </div>
         )
