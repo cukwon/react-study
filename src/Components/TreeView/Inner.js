@@ -28,8 +28,8 @@ class Inner extends Component {
             width:'30px'
         };
         return (
-            <div className='inner'>
-                <span><button style={btnStyle} onClick={() => this.props.toggleExpand()}>{this.props.isExpand ? "∨" : ">" }</button></span>
+            <div className='inner' onClick={() => this.props.toggleExpand()}>
+                <span><button style={btnStyle} >{this.props.isExpand ? "∨" : ">" }</button></span>
                 <span>&nbsp;{this.state.name}</span>
             </div>
         )
