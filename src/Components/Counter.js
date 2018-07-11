@@ -29,10 +29,6 @@ class Counter extends Component {
         this.Multiplication2 = this.hanadleMultiNumber.bind(this, 2);
         // 나눗셈함수
         this.Devision2 = this.hanadleDevisNumber.bind(this, 2);
-
-        // 바인딩 불가 함수 (Q)
-        // this.IncreaseOffset = this.handleAddNumber.bind(this, this.state.offset);
-        // this.DecreaseOffset = this.handleAddNumber.bind(this, -(this.state.offset));
     }
 
     componentWillMount() {
@@ -47,19 +43,17 @@ class Counter extends Component {
         console.log('UnMount');
     }
 
-    // value or index or offset이 변해야 re-render
+    /**
+     * shouldComponentUpdate
+     */
     shouldComponentUpdate(prevProps,prevState) {
-        //console.log(prevState == this.state);
-        // if(prevState.value !== this.state.value ||
-        //     prevState.index !== this.state.index ||
-        //     prevState.offset !== this.state.offset) {
-        //     return true;
-        // }
-        // return false;
+        // 상태변경시 항상 처리
         return true;
     }
 
-    // 덧셈, 뺄셈을 처리 ( value을 바꾸고 log를 기록 )
+    /**
+     * 덧셈, 뺄셈을 처리 ( value을 바꾸고 log를 기록 )
+     */
     handleAddNumber = (offset) => {
         const { value, logs, index } = this.state;
         const newValue = value + offset; // value 변경
@@ -72,7 +66,9 @@ class Counter extends Component {
         })
     };
 
-    // 곱셈을 처리 ( value을 바꾸고 log를 기록 )
+    /**
+     * 곱셈을 처리 ( value을 바꾸고 log를 기록 )
+     */
     hanadleMultiNumber = (offset) =>{
         const { value, logs, index } = this.state;
         const newValue = value * offset; // value 변경
@@ -84,8 +80,9 @@ class Counter extends Component {
             index: index + 1
         })
     };
-
-    // 나눗셈을 처리 ( value을 바꾸고 log를 기록 )
+    /**
+     * 나눗셈을 처리 ( value을 바꾸고 log를 기록 )
+     */
     hanadleDevisNumber = (offset) =>{
         const { value, logs, index } = this.state;
         const newValue = value / offset; // value 변경
@@ -97,36 +94,38 @@ class Counter extends Component {
             index: index + 1
         })
     };
-
-    // 로그를 분석후 최종값을 계산
+    /**
+     * 로그를 분석후 최종값을 계산
+     */
     handleRecoveryNumber = (index) => {
         const { logs } = this.state;
         let sum = 0;
         for (let i = 0; i <= index; i++) {
-                const splitedLog = logs[i].split(" "); // 로그를 가져와 공백을 기준으로 분리
-                const op = splitedLog[0], value = splitedLog[1]; // 로그를 연산자와 피연산자로 분리
-                switch (op) {                                 // 연산자별 처리
-                    case "+" :
-                        sum += parseInt(value);
-                        break;
-                    case "-":
-                        sum -= parseInt(value);
-                        break;
-                    case "x":
-                        sum *= parseInt(value);
-                        break;
-                    case "÷":
-                        sum /= parseInt(value);
-                        break;
-                    default:
-                        console.log("Error for op"); // 잘못된 연산자
-                        break;
-                }
+            const splitedLog = logs[i].split(" "); // 로그를 가져와 공백을 기준으로 분리
+            const op = splitedLog[0], value = splitedLog[1]; // 로그를 연산자와 피연산자로 분리
+            switch (op) {                                 // 연산자별 처리
+                case "+" :
+                    sum += parseInt(value);
+                    break;
+                case "-":
+                    sum -= parseInt(value);
+                    break;
+                case "x":
+                    sum *= parseInt(value);
+                    break;
+                case "÷":
+                    value === 0 ? sum = 0 : sum /= parseInt(value);
+                    break;
+                default:
+                    console.log("Error for op"); // 잘못된 연산자
+                    break;
             }
-            return sum;
+        }
+        return sum;
     }
-
-    // 이전 계산값 불러오기 ( index 조정 )
+    /**
+     * 이전 계산값 불러오기 ( index 조정 )
+     */
     handleDecreaseIndex = () => {
         const { index } = this.state;
         const newIndex = index - 1;
@@ -138,7 +137,9 @@ class Counter extends Component {
         }
     };
 
-    // 다음 계산값 불러오기 ( index 조정 )
+    /**
+     * 다음 계산값 불러오기 ( index 조정 )
+     */
     handleIncreaseIndex = () => {
         const { logs, index } = this.state;
         const newIndex = index + 1;
@@ -149,8 +150,9 @@ class Counter extends Component {
             });
         }
     };
-
-    // offset값 바꾸기
+    /**
+     * offset값 바꾸기
+     */
     changeOffset = (evt) => {
         const { value } = evt.target;
         if(value.trim() === '') {
@@ -158,12 +160,13 @@ class Counter extends Component {
         } else {
             const number = parseInt(value);
             if (number) {
-                this.setState({offset: Number(number)});
+                this.setState({offset: number});
             }
         }
     };
-
-    // 계산식 생성
+    /**
+     * 계산식 생성
+     */
     makeEquation = (index) => {
         const { logs } = this.state;
         let Equation = "Equation : 0 ";
@@ -175,7 +178,9 @@ class Counter extends Component {
     }
 
 
-    // render ( setState 이후 실행 )
+    /**
+     * render ( setState 이후 실행 )
+     */
     render() {
         const { index, value } = this.state;
         // console.log('render',logs.length, index,logs[index],logs);
@@ -185,7 +190,7 @@ class Counter extends Component {
                 <h1>카운터</h1>
                 {/* 계산 로그 */}
                 <div>
-                <p>{this.makeEquation(index)}</p>
+                    <p>{this.makeEquation(index)}</p>
                 </div>
                 {/* 결과 값과 이전, 다음버튼 */}
                 <div>
@@ -223,8 +228,8 @@ export default Counter;
 
 /**
  * 1. 예외처리 하기 -> 나눗셈 연산 추가로 인한 버그발생 (0 / 으로 나누기)
- * 2. changeOffset 함수에서 Number함수를 다시 호출하는 이유는?
- * 3. 함수에서는 * 주석 사용하기
- * 4. logs 자료구조 단점 -> 매번 split 한다.
- * 5. render 안의 Equation을 구하는 부분도 함수로 빼는게 좋을꺼 같다.
+ * 2. changeOffset 함수에서 Number함수를 다시 호출하는 이유는? ( if문 추가후 제거하지 않음 )
+ * 3. 함수에서는 * 주석 사용하기 ( Ok )
+ * 4. logs 자료구조 단점 -> 매번 split 한다. ( check )
+ * 5. render 안의 Equation을 구하는 부분도 함수로 빼는게 좋을꺼 같다. ( OK )
  */
