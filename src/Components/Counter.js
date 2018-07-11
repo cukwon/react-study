@@ -12,7 +12,7 @@ class Counter extends Component {
         super(props);
         console.log("Create");
         this.state = {
-            value:0, // 최종 결과
+            value: 0, // 최종 결과
             logs: [], // 연산 로그
             offset: 10,
             index: -1
@@ -214,8 +214,8 @@ class Counter extends Component {
                     <br/>
                     연산값 :
                     <input type="text" value={this.state.offset} onChange={this.changeOffset}/>
-                    <button onClick={this.handleAddNumber.bind(this, this.state.offset)}>+</button>
-                    <button onClick={this.handleAddNumber.bind(this, -(this.state.offset))}>-</button>
+                    <button onClick={() => this.handleAddNumber( this.state.offset )}>+</button>
+                    <button onClick={() => this.handleAddNumber(-(this.state.offset)) }>-</button>
                 </div>
             </div>
         )

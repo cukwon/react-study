@@ -21,7 +21,7 @@ const getMarkFromType = (type) => {
  * @return {*}
  */
 const getEquation = (actions) => {
-    let equation = actions.reduce((prev, curr) => prev + " " + getMarkFromType(curr.type) + " " + curr.value, ''); // 줄바꿈 문제로 공백 추가
+    let equation = actions.reduce((prev, curr) => prev + " " + +getMarkFromType(curr.type) + " " + curr.value, ''); // 줄바꿈 문제로 공백 추가
     equation = 'Equation : 0' + equation + ' =';
     return equation;
 };
@@ -144,14 +144,14 @@ class Counter extends Component {
                 </div>
                 {/* 자주쓰는 연산 */}
                 <div>
-                    <button onClick={this.addAction.bind(this,{type: 'div', value: 2})}>÷2</button>
-                    <button onClick={this.addAction.bind(this, {type: 'sub', value: 100})}>-100</button>
-                    <button onClick={this.addAction.bind(this, {type: 'sub', value: 10})}>-10</button>
-                    <button onClick={this.addAction.bind(this, {type: 'sub', value: 1})}>-1</button>
-                    <button onClick={this.addAction.bind(this, {type: 'add', value: 1})}>+1</button>
-                    <button onClick={this.addAction.bind(this, {type: 'add', value: 10})}>+10</button>
-                    <button onClick={this.addAction.bind(this, {type: 'add', value: 100})}>+100</button>
-                    <button onClick={this.addAction.bind(this, {type: 'mul', value: 2})}>x2</button>
+                    <button onClick={() => {this.addAction({type: 'div', value: 2})}}>÷2</button>
+                    <button onClick={() => {this.addAction({type: 'sub', value: 100})}}>-100</button>
+                    <button onClick={() => {this.addAction({type: 'sub', value: 10})}}>-10</button>
+                    <button onClick={() => {this.addAction({type: 'sub', value: 1})}}>-1</button>
+                    <button onClick={() => {this.addAction({type: 'add', value: 1})}}>+1</button>
+                    <button onClick={() => {this.addAction({type: 'add', value: 10})}}>+10</button>
+                    <button onClick={() => {this.addAction({type: 'add', value: 100})}}>+100</button>
+                    <button onClick={() => {this.addAction({type: 'mul', value: 2})}}>x2</button>
                 </div>
                 {/* 커스텀 연산 */}
                 <div>
