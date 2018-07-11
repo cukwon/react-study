@@ -50,12 +50,13 @@ class Counter extends Component {
     // value or index or offset이 변해야 re-render
     shouldComponentUpdate(prevProps,prevState) {
         //console.log(prevState == this.state);
-        if(prevState.value !== this.state.value ||
-            prevState.index !== this.state.index ||
-            prevState.offset !== this.state.offset) {
-            return true;
-        }
-        return false;
+        // if(prevState.value !== this.state.value ||
+        //     prevState.index !== this.state.index ||
+        //     prevState.offset !== this.state.offset) {
+        //     return true;
+        // }
+        // return false;
+        return true;
     }
 
     // 덧셈, 뺄셈을 처리 ( value을 바꾸고 log를 기록 )
@@ -76,7 +77,7 @@ class Counter extends Component {
         const { value, logs, index } = this.state;
         const newValue = value * offset; // value 변경
         const newLogs = logs.slice(0, index + 1);// 현재 index 이후값 제거
-        newLogs.push("x "+offset); // log 추가
+        newLogs.push("× "+offset); // log 추가
         this.setState({
             value: newValue,
             logs: newLogs,
@@ -162,26 +163,29 @@ class Counter extends Component {
         }
     };
 
-
-
-    // render ( setState 이후 실행 )
-    render() {
-        const { index, value ,logs } = this.state;
-        // console.log('render',logs.length, index,logs[index],logs);
-        console.log(this.state);
-
-        // 계산식 생성
-        let Equation = "Equation : 0";
+    // 계산식 생성
+    makeEquation = (index) => {
+        const { logs } = this.state;
+        let Equation = "Equation : 0 ";
         for(let i = 0; i <= index; i++) {
             Equation += logs[i] + " ";
         }
         Equation += " = ";
+        return Equation;
+    }
+
+
+    // render ( setState 이후 실행 )
+    render() {
+        const { index, value } = this.state;
+        // console.log('render',logs.length, index,logs[index],logs);
+        console.log(this.state);
         return(
             <div>
                 <h1>카운터</h1>
                 {/* 계산 로그 */}
                 <div>
-                <p>{Equation}</p>
+                <p>{this.makeEquation(index)}</p>
                 </div>
                 {/* 결과 값과 이전, 다음버튼 */}
                 <div>

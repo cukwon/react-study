@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 /**
- * 연타입을 받아서 연산 기호를 리턴한다.
+ * 연산타입을 받아서 연산 기호를 리턴한다.
  * @param type
  * @return {*}
  */
@@ -21,10 +21,10 @@ const getMarkFromType = (type) => {
  * @return {*}
  */
 const getEquation = (actions) => {
-    let equation = actions.reduce((prev, curr) => prev + getMarkFromType(curr.type) + curr.value, '');
-    equation = 'Equation : 0' + equation + ' ='
+    let equation = actions.reduce((prev, curr) => prev + " " + getMarkFromType(curr.type) + " " + curr.value, ''); // 줄바꿈 문제로 공백 추가
+    equation = 'Equation : 0' + equation + ' =';
     return equation;
-}
+};
 
 /**
  * 액션들을 연산하여 값을 계산한다.
@@ -49,7 +49,7 @@ const calculateAction = (preValue, curr) => {
         case 'div': return preValue / curr.value;
         default: return preValue;
     }
-}
+};
 
 /**
  * Counter
@@ -60,10 +60,7 @@ class Counter extends Component {
      */
     constructor(props) {
         super(props);
-
         this.state = {
-            // 최종결과
-            value:0,
             // 연산 로그
             actions: [],
             // inputNumber
@@ -96,7 +93,7 @@ class Counter extends Component {
                 this.setState({offset: number});
             }
         }
-    }
+    };
 
     /**
      * 액션을 추가한다.
@@ -105,15 +102,18 @@ class Counter extends Component {
         const actions = this.state.actions.slice(0, this.state.index + 1);
         actions.push(action);
         this.setState({actions, index: actions.length - 1});
-    }
+    };
 
+    /**
+     * 인덱스를 변경한다.
+     */
     changeIndex = (value) => {
         let index = this.state.index + value;
         if(index >= -1 && index < this.state.actions.length) {
             this.setState({index})
         }
-        this.setState({index})
-    }
+        // this.setState({index}) // 원하지 않은 값 변경 ( 버그 발생 ( 액션 2번 순회) )
+    };
 
 
     /**
@@ -144,14 +144,14 @@ class Counter extends Component {
                 </div>
                 {/* 자주쓰는 연산 */}
                 <div>
-                    <button onClick={() => this.addAction({type: 'div', value: 2})}>÷2</button>
-                    <button onClick={() => this.addAction({type: 'sub', value: 100})}>-100</button>
-                    <button onClick={() => this.addAction({type: 'sub', value: 10})}>-10</button>
-                    <button onClick={() => this.addAction({type: 'sub', value: 1})}>-1</button>
-                    <button onClick={() => this.addAction({type: 'add', value: 1})}>+1</button>
-                    <button onClick={() => this.addAction({type: 'add', value: 10})}>+10</button>
-                    <button onClick={() => this.addAction({type: 'add', value: 100})}>+100</button>
-                    <button onClick={() => this.addAction({type: 'mul', value: 2})}>x2</button>
+                    <button onClick={this.addAction.bind(this,{type: 'div', value: 2})}>÷2</button>
+                    <button onClick={this.addAction.bind(this, {type: 'sub', value: 100})}>-100</button>
+                    <button onClick={this.addAction.bind(this, {type: 'sub', value: 10})}>-10</button>
+                    <button onClick={this.addAction.bind(this, {type: 'sub', value: 1})}>-1</button>
+                    <button onClick={this.addAction.bind(this, {type: 'add', value: 1})}>+1</button>
+                    <button onClick={this.addAction.bind(this, {type: 'add', value: 10})}>+10</button>
+                    <button onClick={this.addAction.bind(this, {type: 'add', value: 100})}>+100</button>
+                    <button onClick={this.addAction.bind(this, {type: 'mul', value: 2})}>x2</button>
                 </div>
                 {/* 커스텀 연산 */}
                 <div>
