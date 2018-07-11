@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 class Inner extends Component {
 
+    /**
+     * Constructor
+     * @param props
+     */
     constructor(props) {
         super(props);
         console.log("inner",this.props)
@@ -10,8 +14,12 @@ class Inner extends Component {
         }
     }
 
+    /**
+     * Render
+     * @returns {*}
+     */
     render() {
-        const style = {
+        const btnStyle = {
             backgroundColor:'#000000',
             color:'#fcfffe',
             fontsize:'10px',
@@ -21,7 +29,7 @@ class Inner extends Component {
         };
         return (
             <div className='inner'>
-                <span><button style={style} onClick={() => this.props.toggleExpand()}>{this.props.isExpand ? "∨" : ">" }</button></span>
+                <span><button style={btnStyle} onClick={() => this.props.toggleExpand()}>{this.props.isExpand ? "∨" : ">" }</button></span>
                 <span>&nbsp;{this.state.name}</span>
             </div>
         )

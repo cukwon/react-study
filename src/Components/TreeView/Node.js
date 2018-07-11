@@ -14,11 +14,14 @@ class Node extends Component {
         const { name } = this.props;
         this.state = {
             name: name,
-            isExpand: false
+            isExpand: false // 펼침 여부
         }
 
     }
 
+    /**
+     *  펼침 여부를 변경
+     */
     handleToggleExpand = () => {
         const { isExpand } = this.state;
         this.setState({
@@ -26,25 +29,17 @@ class Node extends Component {
         });
     };
 
-    handleChildren = (TreeData) => {
-        let Childrens =[];
-        if(this.state.isExpand) {
-            console.log(typeof(TreeData.Children), typeof([]))
-            if (typeof(TreeData.children) === typeof([])) {
-                Childrens = TreeData.children.map(children => (<Children TreeData={children}/>));
-                console.log("if", TreeData.children)
-            }
-        }
-        return Childrens;
-    }
-
+    /**
+     * Render
+     * @returns {*}
+     */
     render() {
         const { name, children } = this.props;
         console.log("Node",children);
         return (
             <div className='Node'>
                 <Inner name={name} isExpand={this.state.isExpand} toggleExpand={this.handleToggleExpand}/>
-                { typeof(children) === typeof([]) && this.state.isExpand ? <Children childrens={children}/> : "" }
+                { children !== undefined && this.state.isExpand ? <Children childrens={children}/> : "" }
             </div>
         )
     }
