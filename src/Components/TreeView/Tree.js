@@ -20,9 +20,10 @@ class Tree extends Component { // 루트 노드
             textAlign:"left" // 좌측 정렬
         };
 
+        const { name, children} = this.props.TreeData;
         return (
-            <div className='tree' name="" style={style} >
-                <Node TreeData={this.props.TreeData}/>
+            <div className='tree' style={style} >
+                <Node name={name} children={children} TreeData={this.props.TreeData}/>
             </div>
         )
     }

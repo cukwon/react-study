@@ -4,6 +4,10 @@ import Data from './ExampleData';
 
 class TreeView extends Component {
 
+    /**
+     * Render
+     * @returns {*}
+     */
     render() {
         return (
             <div>
