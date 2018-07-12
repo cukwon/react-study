@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import ToDoListTemplate from './ToDoListTemplate'
 import Form from "./Form";
 import TodoItemList from "./TodoItemList";
+import Palette from "./Palette";
 
 class TodoWrapper extends Component {
 
     id = 0;
-
+    colors= ['#343a40', '#f03e3e', '#12b886', '#228ae6'];
     /**
      * Constructor
      * @param props
@@ -15,7 +16,8 @@ class TodoWrapper extends Component {
         super(props);
         this.state = {
             value: "",
-            todoList: []
+            todoList: [],
+            selected : '#343a40'
         }
     }
 
@@ -38,7 +40,7 @@ class TodoWrapper extends Component {
         const { value, todoList } = this.state;
         if( value !== "") {
             let todolist = todoList.slice(0);
-            const todo = {id: this.id++, text: value, checked: false};
+            const todo = {id: this.id++, text: value, checked: false, color:this.state.selected};
             todolist.push(todo);
             this.setState({
                 value: "",
@@ -85,6 +87,13 @@ class TodoWrapper extends Component {
         });
     };
 
+    handleColorChange = (color) =>{
+        console.log(color)
+        this.setState({
+            selected: color
+        })
+    }
+
     /**
      *  엔터키가 눌리면 할일 추가함
      * @param e(Event Object)
@@ -93,7 +102,7 @@ class TodoWrapper extends Component {
         if(e.key === 'Enter') {
             this.handleAddTodo();
         }
-    }
+    };
 
     /**
      * Render
@@ -110,7 +119,8 @@ class TodoWrapper extends Component {
         };
         return (
             <div className='Wrapper' style={style}>
-                <ToDoListTemplate form={<Form value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.handleValueChange} onCreate={this.handleAddTodo} />}>
+                <ToDoListTemplate form={<Form value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.handleValueChange} onCreate={this.handleAddTodo} />}
+                                  palette={<Palette colors={this.colors} selected={this.state.selected} onSelect={this.handleColorChange}/>}>
                     <TodoItemList todos={this.state.todoList} onDelete={this.handleDeleteTodo} onCheck={this.handleCheckTodo}/>
                 </ToDoListTemplate>
             </div>

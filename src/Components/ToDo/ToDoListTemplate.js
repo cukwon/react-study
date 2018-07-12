@@ -8,11 +8,14 @@ import './TodoListTemplate.css';
  * @returns {*}
  * @constructor
  */
-const ToDoListTemplate = ({form, children}) => {
+const ToDoListTemplate = ({form, palette,children}) => {
         return (
             <div className='todo-list-template'>
                 <div className='title'>
                     오늘의 할 일
+                </div>
+                <div className='palette-wrapper'>
+                    {palette}
                 </div>
                 <div className='form-wrapper'>
                     {form}
