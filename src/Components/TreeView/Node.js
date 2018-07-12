@@ -38,7 +38,7 @@ class Node extends Component {
         console.log("Node",children);
         return (
             <div className='Node'>
-                <Inner name={name} isExpand={this.state.isExpand} toggleExpand={this.handleToggleExpand}/>
+                <Inner name={name} isExpand={this.state.isExpand} toggleExpand={this.handleToggleExpand} isNoChild={ children === undefined ? true : false}/>
                 { children !== undefined && this.state.isExpand ? <Children childrens={children}/> : "" }
             </div>
         )
