@@ -76,11 +76,9 @@ class TodoWrapper extends Component {
         //console.log("Clicked", id);
         //console.log(todoList.getIn([id,'checked']));
         const nextList = todoList.update(
-            todoList.findIndex(function(item) {
-                return item.get("id") === id ;
-            }), function(item) {
-                return item.set("checked", !item.get('checked'));
-            }
+            todoList.findIndex(
+                item => item.get("id") === id),
+                item => item.set("checked", !item.get('checked'))
         );
         this.setState({
             todoList: nextList
