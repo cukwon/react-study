@@ -4,6 +4,8 @@ import MyName from './Components/Myname';
 import Counter from './Components/Counter';
 import Counter2 from './Components/Counter2';
 import PhoneBook from './Components/PhoneBook/PhoneBook'
+import ToDoListTemplate from "./Components/ToDo/ToDoListTemplate";
+import TodoWrapper from "./Components/ToDo/TodoWrapper";
 
 class App extends Component {
 
@@ -35,10 +37,12 @@ class App extends Component {
                  <div style={style}>
                     <Counter2/>
                 </div>
-
                 <br/><br/>
                 <div style={style}>
                     <PhoneBook/>
+                </div>
+                <div>
+                <TodoWrapper/>
                 </div>
             </div>
         );
