@@ -5,8 +5,7 @@ class TodoItemList extends Component {
 
     /**
      * ShouldComponentUpdate
-     * @param nextProps
-     * @param nextState
+     * @param nextProps & State
      * @returns {boolean}
      */
     shouldComponentUpdate(nextProps, nextState) {

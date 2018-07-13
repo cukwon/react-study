@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './css/Form.css'
 
+/**
+ *  할일을 추가하는 컴포넌트
+ */
 class Form extends Component {
 
     /**

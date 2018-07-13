@@ -5,10 +5,14 @@ import Form from "./Form";
 import TodoItemList from "./TodoItemList";
 import Palette from "./Palette";
 
+/**
+ * TodoList를 감싸는 컴포넌트
+ */
 class TodoWrapper extends Component {
 
     id = 0;
     colors= ['#343a40', '#f03e3e', '#12b886', '#228ae6'];
+
     /**
      * Constructor
      * @param props
@@ -55,9 +59,9 @@ class TodoWrapper extends Component {
      */
     handleDeleteTodo = ( id ) => {
         const {todoList} = this.state;
-        console.log("Clicked", id);
+        //console.log("Clicked", id);
         const nextList = todoList.delete(id);
-        console.log(nextList)
+        //console.log(nextList);
         this.setState({
             todoList: nextList
         });
@@ -69,8 +73,8 @@ class TodoWrapper extends Component {
      */
     handleCheckTodo = ( id ) => {
         const {todoList} = this.state;
-        console.log("Clicked", id);
-        console.log(todoList.getIn([id,'checked']))
+        //console.log("Clicked", id);
+        //console.log(todoList.getIn([id,'checked']));
         const nextList = todoList.update(
             todoList.findIndex(function(item) {
                 return item.get("id") === id ;
@@ -84,7 +88,7 @@ class TodoWrapper extends Component {
     };
 
     handleColorChange = (color) =>{
-        console.log(color);
+        //console.log(color);
         this.setState({
             selected: color
         })
