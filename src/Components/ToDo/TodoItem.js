@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './TodoItem.css'
+import './css/TodoItem.css'
 
 class TodoItem extends Component {
 
@@ -13,20 +13,19 @@ class TodoItem extends Component {
 
     render () {
         const { todo, onDelete, onCheck } = this.props;
-        console.log("render TodoItem",todo.id);
-        const { checked } = todo;
+        console.log("render TodoItem",todo.get('id'));
         const style = {
-            color: todo.color
+            color: todo.get('color')
         }
         return (
-            <div className='todo-item' onClick={() => onCheck(todo.id)}>
-                <div className='remove' onClick={(e) => {e.stopPropagation(); onDelete(todo.id)}}>
+            <div className='todo-item' onClick={() => onCheck(todo.get('id'))}>
+                <div className='remove' onClick={(e) => {e.stopPropagation(); onDelete(todo.get('id'))}}>
                    &times;
                 </div>
-                <div className={"todo-text " + (checked && "checked")} style={style} >
-                    {todo.text}
+                <div className={"todo-text " + (todo.get('checked') && "checked")} style={style} >
+                    {todo.get('text')}
                 </div>
-                {checked && (<div className='check-mark'>✓</div> )}
+                {todo.get('checked') && (<div className='check-mark'>✓</div> )}
             </div>
         )
     }

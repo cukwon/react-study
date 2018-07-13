@@ -1,8 +1,8 @@
 import React from 'react';
-import './Palette.css';
+import './css/Palette.css';
 
 const Color = ({ color, active, onClick }) => {
-    console.log(color,active,onClick)
+    //console.log(color,active,onClick)
     const style = {
         background: color
     };
@@ -14,10 +14,10 @@ const Color = ({ color, active, onClick }) => {
 };
 
 const Palette = ({colors, selected, onSelect}) => {
-    console.log(colors, selected, onSelect);
+   // console.log(colors, selected, onSelect);
     console.log("render Platte");
 
-    const list = colors.map(color => (<Color color={color} active={color === selected ? true : false} onClick={onSelect}/>))
+    const list = colors.map(color => (<Color key={color} color={color} active={color === selected ? true : false} onClick={onSelect}/>))
     return (
         <div className='palette'>
             {list}

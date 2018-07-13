@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Map, List } from 'immutable';
 import ToDoListTemplate from './ToDoListTemplate'
 import Form from "./Form";
 import TodoItemList from "./TodoItemList";
@@ -16,7 +17,7 @@ class TodoWrapper extends Component {
         super(props);
         this.state = {
             value: "",
-            todoList: [],
+            todoList: List([]),
             selected : '#343a40'
         }
     }
@@ -36,15 +37,14 @@ class TodoWrapper extends Component {
      *  value를 todoList에 추가한다.
      */
     handleAddTodo = () => {
-        console.log("onCreate", this.state.value, " : ", this.state.todoList)
         const { value, todoList } = this.state;
+        console.log("onCreate", value, " : ", todoList)
         if( value !== "") {
-            let todolist = todoList.slice(0);
-            const todo = {id: this.id++, text: value, checked: false, color:this.state.selected};
-            todolist.push(todo);
+            const nextList = todoList.push(Map({id: this.id++, text: value, checked: false, color:this.state.selected}))
+            console.log(nextList);
             this.setState({
                 value: "",
-                todoList: todolist
+                todoList: nextList
             })
         }
     };
@@ -55,44 +55,40 @@ class TodoWrapper extends Component {
      */
     handleDeleteTodo = ( id ) => {
         const {todoList} = this.state;
-        console.log("Clicked", id)
-        let todolist = todoList.slice(0);
-        for (var i = todolist.length - 1; i >= 0; i--) {
-            const todo = Object.assign({}, todolist[i]);
-            if (todo.id === id) {
-                todolist.splice(i, 1);
-            }
-        }
+        console.log("Clicked", id);
+        const nextList = todoList.delete(id);
+        console.log(nextList)
         this.setState({
-            todoList:todolist
+            todoList: nextList
         });
     };
+
     /**
      * 할일을 완료상태로 바꾸거나 미완료상태로 바꾼다.
      * @param id
      */
     handleCheckTodo = ( id ) => {
         const {todoList} = this.state;
-        console.log("Clicked", id)
-        let todolist = todoList.slice(0);
-        for (var i = todolist.length - 1; i >= 0; i--) {
-            const todo = Object.assign({}, todolist[i]);
-            if (todo.id === id) {
-                todo.checked = !todo.checked;
-                todolist[i] = todo;
+        console.log("Clicked", id);
+        console.log(todoList.getIn([id,'checked']))
+        const nextList = todoList.update(
+            todoList.findIndex(function(item) {
+                return item.get("id") === id ;
+            }), function(item) {
+                return item.set("checked", !item.get('checked'));
             }
-        }
+        );
         this.setState({
-            todoList:todolist
+            todoList: nextList
         });
     };
 
     handleColorChange = (color) =>{
-        console.log(color)
+        console.log(color);
         this.setState({
             selected: color
         })
-    }
+    };
 
     /**
      *  엔터키가 눌리면 할일 추가함

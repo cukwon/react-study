@@ -1,5 +1,5 @@
 import React from 'react';
-import './TodoListTemplate.css';
+import './css/TodoListTemplate.css';
 
 /**
  * TodoList의 모양을 잡아주는 템플릿
