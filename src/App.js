@@ -6,28 +6,19 @@ import Counter2 from './Components/Counter/Counter2';
 import PhoneBook from './Components/PhoneBook/PhoneBook'
 import ToDoListTemplate from "./Components/ToDo/ToDoListTemplate";
 import TodoWrapper from "./Components/ToDo/TodoWrapper";
-import CommentsWrapper from "./Components/Comments/CommentsWrapper";
 import TreeView from './Components/TreeView/TreeView';
 import CommentsWrapper2 from "./Components/NewComments/CommentsWrapper";
 
 class App extends Component {
 
-    // Constructor
-    // constructor(props) {
-    //     super(props)
-    // }
-
-    //render
+    /**
+     * Render
+     * 상태가 바뀌었을떄 호출 ( setState에 의해 )
+     */
     render() {
-        const style = {
-            backgroundColor:'black',
-            padding: '12px',
-            color:'white',
-            fontSize: '16px'
-        };
+
         return (
             <div className= 'App'>
-                {/*<CommentsWrapper/>*/}
                 <CommentsWrapper2/>
             </div>
 

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Form from "../Form";
+import Form from "./Form";
 
 class Node extends Component {
     render () {
-        const { data } = this.props;
+        const { data, onChange } = this.props;
         console.log('Node',data );
-        const CommentsList = ( data.get('comments') ? data.get('comments').map(comment => (<Node data={comment} />)) : undefined)
+        const CommentsList = ( data.get('comments') ? data.get('comments').map(comment => (<Node data={comment} onChange={onChange}/>)) : undefined)
         return (
             <div className='Node-wrapper' style={{padding:'2px 0 2px 20px'}}>
                 <div className='comment-wrapper' style={{padding:'2px 15px'}}>
@@ -22,7 +22,7 @@ class Node extends Component {
                 }
                 { data.get('Adding') &&
                 <div className='form-wrapper'>
-                    <Form value={data.get('value')} btnName='등록'/>
+                    <Form id={data.get('id')} value={data.get('value')} onChange={onChange} btnName='등록'/>
                 </div>
                 }
             </div>
