@@ -8,7 +8,7 @@ class Node extends Component {
         console.log('Node',state)
         return (
             <div style={{padding:' 2px 20px'}}>
-                <div className='list-wrapper' style={{border:'1px solid black'}}>
+                <div className='list-wrapper'>
                     <List comments={state.get('comments')}/>
                 </div>
                 { state.get('Adding') &&

@@ -8,7 +8,6 @@ import ToDoListTemplate from "./Components/ToDo/ToDoListTemplate";
 import TodoWrapper from "./Components/ToDo/TodoWrapper";
 import CommentsWrapper from "./Components/Comments/CommentsWrapper";
 import TreeView from './Components/TreeView/TreeView';
-import CommentsWrapper2 from "./Components/NewComments/CommentsWrapper";
 
 class App extends Component {
 
@@ -27,10 +26,8 @@ class App extends Component {
         };
         return (
             <div className= 'App'>
-                {/*<CommentsWrapper/>*/}
-                <CommentsWrapper2/>
+                <CommentsWrapper/>
             </div>
-
         );
     }
 }
