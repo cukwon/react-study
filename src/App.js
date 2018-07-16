@@ -7,6 +7,7 @@ import PhoneBook from './Components/PhoneBook/PhoneBook'
 import ToDoListTemplate from "./Components/ToDo/ToDoListTemplate";
 import TodoWrapper from "./Components/ToDo/TodoWrapper";
 import CommentsWrapper from "./Components/Comments/CommentsWrapper";
+import TreeView from './Components/TreeView/TreeView';
 
 class App extends Component {
 
