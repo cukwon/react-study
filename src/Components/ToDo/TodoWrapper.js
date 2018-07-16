@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, List } from 'immutable';
 import ToDoListTemplate from './ToDoListTemplate'
-import Form from "./Form";
+import Form from "../Form";
 import TodoItemList from "./TodoItemList";
 import Palette from "./Palette";
 

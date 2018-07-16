@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import MyName from './Components/Myname';
-import Counter from './Components/Counter';
-import Counter2 from './Components/Counter2';
+import MyName from './Components/Expample/Myname';
+import Counter from './Components/Counter/Counter';
+import Counter2 from './Components/Counter/Counter2';
 import PhoneBook from './Components/PhoneBook/PhoneBook'
 import ToDoListTemplate from "./Components/ToDo/ToDoListTemplate";
 import TodoWrapper from "./Components/ToDo/TodoWrapper";
+import CommentsWrapper from "./Components/Comments/CommentsWrapper";
 
 class App extends Component {
 
@@ -24,26 +25,7 @@ class App extends Component {
         };
         return (
             <div className= 'App'>
-                <div style={style}>
-                    <h1>React.js</h1>
-                    <MyName/>
-                    <MyName name="리엑트"/>
-                </div>
-                <br/><br/>
-                <div style={style}>
-                    <Counter/>
-                </div>
-                <br/><br/>
-                 <div style={style}>
-                    <Counter2/>
-                </div>
-                <br/><br/>
-                <div style={style}>
-                    <PhoneBook/>
-                </div>
-                <div>
-                <TodoWrapper/>
-                </div>
+                <CommentsWrapper/>
             </div>
         );
     }
