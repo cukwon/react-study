@@ -15,11 +15,8 @@ const CommentTrmplate = ({form, palette,children}) => {
                 <div className='title'>
                     댓&nbsp;&nbsp;글
                 </div>
-                <div className='todos-wrapper'>
+                <div className='node-wrapper' style={{textAlign:'left'}}>
                     {children}
-                </div>
-                <div className='form-wrapper'>
-                    {form}
                 </div>
             </div>
         )
