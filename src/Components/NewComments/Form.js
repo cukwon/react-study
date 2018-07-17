@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './css/Form.css'
 
 /**
- *  댓글을 추가하는 컴포넌트
+ *  댓글을 추가할수 있는 컴포넌트
  */
 class Form extends Component {
 

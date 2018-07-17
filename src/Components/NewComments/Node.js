@@ -1,12 +1,33 @@
 import React, { Component } from 'react';
 import Form from "./Form";
 
+/**
+ * 댓글을 표현하는 컴포넌트
+ */
 class Node extends Component {
+
+    /**
+     *  재-렌더링 여부를 결정함
+     * @param nextProps
+     * @param nextState
+     * @returns {boolean}
+     */
+    shouldComponentUpdate(nextProps, nextState) {
+        if( this.props === nextProps ) {
+            return false
+        }
+        return true
+    }
+
+    /**
+     * Render ( 렌더링 함수 )
+     * @returns {*}
+     */
     render () {
         const { data, onChange, onDelete, onToggle, onCreate, onKeyPress } = this.props;
-        //console.log('Node',data );
+        console.log('Node',data.get('id') );
         const CommentsList = ( data.get('comments') ?
-            data.get('comments').map(comment => (<Node data={comment} onChange={onChange} onDelete={onDelete} onToggle={onToggle} onCreate={onCreate} onKeyPress={onKeyPress}/>)) :
+            data.get('comments').map(comment => (<Node key={comment.get('id')} data={comment} onChange={onChange} onDelete={onDelete} onToggle={onToggle} onCreate={onCreate} onKeyPress={onKeyPress}/>)) :
             undefined );
         return (
             <div className='Node-wrapper' style={{padding:'2px 0 2px 20px'}}>

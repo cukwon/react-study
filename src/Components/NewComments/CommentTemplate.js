@@ -2,7 +2,7 @@ import React from 'react';
 import './css/TodoListTemplate.css';
 
 /**
- * TodoList의 모양을 잡아주는 템플릿
+ * Comments의 모양을 잡아주는 템플릿
  * @param form      // 입력 부분
  * @param palette   // 팔래트 부분
  * @param children  // 리스트 출력 부분
