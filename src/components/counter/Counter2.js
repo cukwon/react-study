@@ -52,7 +52,7 @@ const calculateAction = (preValue, curr) => {
 };
 
 /**
- * Counter
+ * counter
  */
 class Counter extends Component {
     /**
