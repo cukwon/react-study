@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
 import './App.css';
-import MyName from './Components/Myname';
-import Counter from './Components/Counter';
-import Counter2 from './Components/Counter2';
-import PhoneBook from './Components/PhoneBook/PhoneBook'
+import CounterRedex from "./components/counter/CounterRedex";
+import CounterContainer from "./containers/CounterContainer";
 
 class App extends Component {
 
@@ -23,22 +23,9 @@ class App extends Component {
         return (
             <div className= 'App'>
                 <div style={style}>
-                    <h1>React.js</h1>
-                    <MyName/>
-                    <MyName name="리엑트"/>
-                </div>
-                <br/><br/>
-                <div style={style}>
-                    <Counter/>
-                </div>
-                <br/><br/>
-                 <div style={style}>
-                    <Counter2/>
-                </div>
-
-                <br/><br/>
-                <div style={style}>
-                    <PhoneBook/>
+                    <Provider store={{store}}>
+                        <CounterContainer/>
+                    </Provider>
                 </div>
             </div>
         );
