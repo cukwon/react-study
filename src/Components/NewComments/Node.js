@@ -13,7 +13,10 @@ class Node extends Component {
      * @returns {boolean}
      */
     shouldComponentUpdate(nextProps, nextState) {
-        if( this.props === nextProps ) {
+        const props = this.props.valueOf()
+        const next = nextProps.valueOf()
+        console.log( this.props.data.get('id'), next, props === next ) ;
+        if( this.props.data === nextProps.data ) {
             return false
         }
         return true

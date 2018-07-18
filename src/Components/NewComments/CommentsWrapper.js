@@ -16,7 +16,6 @@ var key = 15;
  * @returns {*}
  */
 const checkId = ( index, id, comment, path ) => {
-    //console.log('input', comment);
     let nextIndex = 0;
     // 경로에 넣음
     if(flag !== true)
@@ -30,7 +29,6 @@ const checkId = ( index, id, comment, path ) => {
     // 같은 아이디인지 확인
     if( comment.get('id') === id && !flag) {
         flag = true;
-        //console.log(comment.get('id'),'output',flag)
         return path;
     }
     // 결과를 반환
@@ -111,7 +109,6 @@ class CommentsWrapper2 extends Component {
 
         const index = findIndex( id, data );
 
-        //console.log('delete', data.getIn(index));
         const nextData = data.removeIn(index)
 
         this.setState({
@@ -128,7 +125,6 @@ class CommentsWrapper2 extends Component {
 
         const index = findIndex( id, data );
 
-        console.log('update', data.getIn(index));
         const nextData = data.updateIn(index,item => item.set('Adding', !item.get('Adding')))
 
         this.setState({
@@ -145,14 +141,14 @@ class CommentsWrapper2 extends Component {
 
         const index = findIndex( id, data );
 
-        console.log('Create', data.getIn(index));
         let nextData = data.updateIn(
             index,item => item.set(
                 'comments',
-                (item.get('comments')?item.get('comments'):List([])).push( Map({id:key++,value:"", Adding:false, comment:item.get('value')}))
+                (item.get('comments') || List([])).push( Map({id:key++,value:"", Adding:false, comment:item.get('value')}))
             )
         );
         nextData = nextData.updateIn(index,item => item.set('value', ""));
+        nextData = nextData.updateIn(index,item => item.set('Adding', false));
 
         this.setState({
             data : nextData
@@ -168,7 +164,7 @@ class CommentsWrapper2 extends Component {
         if (e.key === 'Enter') {
             this.handleCreate(id);
         }
-    }
+    };
 
 
     /**

@@ -12,11 +12,11 @@ class Form extends Component {
      */
     render() {
         const { id, value, btnName, onChange, onCreate, onKeyPress } = this.props;
-        //console.log("render Form", id);
+        // console.log("render Form", id);
         return (
             <div className='form'>
                 <input type='text' value={value} onChange={(e) => onChange(id,e)} onKeyPress={(e) => onKeyPress(id,e)} />
-                <div className='create-button' onClick={() => onCreate(id)}>{btnName}</div>
+                <div className='create-button' onDoubleClick={() => onCreate(id)}>{btnName}</div>
             </div>
         )
     }
