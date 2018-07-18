@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PhoneBookC from "../components/PhoneBook/PhoneBook";
+import NaviButton from "../components/basic/NaviButton";
 
 const PhoneBook = () => {
     return (
@@ -9,7 +10,7 @@ const PhoneBook = () => {
                 <PhoneBookC/>
             </div>
             <div>
-                <Link to="/">뒤로가기</Link>
+                <NaviButton name='뒤로가기' url='/'/>
             </div>
         </div>
     )

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import TreeView from "../components/TreeView/TreeView";
+import NaviButton from "../components/basic/NaviButton";
 
 const Treeviews = () => {
     return (
@@ -9,7 +10,7 @@ const Treeviews = () => {
                 <TreeView/>
             </div>
             <div>
-                <Link to="/">뒤로가기</Link>
+                <NaviButton name='뒤로가기' url='/'/>
             </div>
         </div>
     )

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Counter from "../components/counter/Counter";
-import Counter2 from "../components/counter/Counter2";
+import Counter2 from "../components/counter/CounterCm";
+import NaviButton from "../components/basic/NaviButton";
 
 
 
@@ -19,7 +20,7 @@ const Counters = () => {
                 <Counter2/>
             </div>
             <div className='navi' style={style}>
-                <Link to='/'>메인으로</Link>
+                <NaviButton name='뒤로가기' url='/'/>
             </div>
         </div>
     );
