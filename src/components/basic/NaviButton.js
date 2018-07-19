@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class NaviButton extends React.Component {
     render () {
@@ -15,7 +15,7 @@ class NaviButton extends React.Component {
         const { name, url } = this.props;
         return (
             <div className='naviButton' style={style}>
-                <Link to={url}>{name}</Link>
+                <NavLink to={url}>{name}</NavLink>
             </div>
 
         );
