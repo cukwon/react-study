@@ -29,7 +29,7 @@ class Navigation extends Component {
         const NaviList = this.state.data.map(item=>(<NaviButton key={this.id++} name={item.get('name')} url={item.get('url')} />));
 
         return (
-            <div style={style} className='Navigation'>
+            <div className='Navigation'>
                 {NaviList}
             </div>
         )

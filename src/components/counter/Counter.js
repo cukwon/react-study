@@ -184,7 +184,7 @@ class Counter extends Component {
     render() {
         const { index, value } = this.state;
         // console.log('render',logs.length, index,logs[index],logs);
-        console.log(this.state);
+        // console.log(this.state);
         return(
             <div>
                 <h1>카운터</h1>
